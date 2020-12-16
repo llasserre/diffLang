@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Language{% endblock %}
+
+{% block nav %}
+        {{ parent() }}
+        <div style="position:absolute !important; left:10px !important;">
+            <a href="{{ path('commande_index') }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Feedbin-Icon-left-arrow.svg/626px-Feedbin-Icon-left-arrow.svg.png" height="50"></a>
+        </div>
+    </nav>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-6 text-center">
+            <h1>Language</h1>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ language.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ language.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Descriptif</th>
+                        <td>{{ language.descriptif|e("html") }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6 text-center">
+            {% if language.nom == "PHP" %}
+                <a href="https://www.php.net/">
+                    <img src="https://lh3.googleusercontent.com/proxy/6aiib2lVlAW8wQuzSTMlurUiQklt9RdltF7uXi5g5chLuqeefp84_og56fwOSm4q-NqxswPvF8PA4Vsvz3__sMBhrLN13-puSlQDUVVZBHHz" style="width:385px; height:268px"></img>
+                </a>
+            {% elseif language.nom == "JavaScript" %}
+                <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript">
+                    <img src="https://dejanstojanovic.net/media/131814/16x9.png" style="width:385px; height:268px"></img>
+                </a>
+            {% elseif language.nom == "Java" %}
+                <a href="https://docs.oracle.com/javase/tutorial/getStarted/index.html">
+                    <img src="data:image/jpeg;base64,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" style="width:385px; height:268px"></img>
+                </a>
+            {% elseif language.nom == "C++" %}
+                <a href="https://docs.microsoft.com/fr-fr/cpp/?view=msvc-160">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png" style="width:385px; height:268px"></img>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Procédural</h1>
+                {% for commande in language.commandes %}
+                    {% if commande.typeCommande.typeCmdFamily.id == 1 %}
+                        <div class="card">
+                            <div class="card-header"> {{ commande.typeCommande.libelle }}</div>
+                            <div class="card-body"> {{ commande.ligne }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-sm-6">
+                <h1>Orienté objet</h1>
+                {% for commande in language.commandes %}
+                    {% if commande.typeCommande.typeCmdFamily.id == 2 %}
+                        <div class="card">
+                            <div class="card-header"> {{ commande.typeCommande.libelle }}</div>
+                            <div class="card-body"> {{ commande.ligne }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {# <a href="{{ path('language_edit', {'id': language.id}) }}">edit</a> #}
+
+    {# {{ include('language/_delete_form.html.twig') }} #}
+{% endblock %}

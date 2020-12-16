@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block nav %}
+        {{ parent() }}
+    </nav>
+{% endblock %}
+{% block body %}
+    <div class="card">
+        <div class="table-responsive">
+            <div class="card-body">
+                <table class="table table-striped table-bordered" id="myTable">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Commandes</th>
+                            {% for language in languages %}
+                                <th>
+                                    <a href="{{ path('language_show', {'id': language.id}) }}" data-toggle="tooltip" 
+                                    data-id="{{ language.nom }}" data-title="{{ language.descriptif }}">{{ language.nom }}</a>
+                                </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for unType in typeCommandes %}
+                        <tr>
+                            <td class="table-secondary" data-toggle="tooltip" data-id="{{ unType.libelle }}" data-placement="left" 
+                            data-title="{{ unType.decriptif }}">{{ unType.libelle }}</td>
+                            {% for commande in commandes|sort((a, b) => a.typeCommande.typeCmdFamily <=> b.typeCommande.typeCmdFamily) %}
+                                {% if commande.typeCommande == unType %}
+                                    <td>{{ commande.ligne }}</td>
+                                {% endif %}
+                            {% else %}
+                            <tr>
+                                <td colspan="3">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <a href="{{ path('commande_new') }}">Create new</a>
+{% endblock %}
